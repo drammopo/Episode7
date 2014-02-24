@@ -1,4 +1,5 @@
 require 'geocoder'
+
 class Map
 
   def self.search(terms)

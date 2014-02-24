@@ -12,4 +12,5 @@ class SalesPerson
   def route
     CalculatesRoute.calculate(cities)
   end
+
 end

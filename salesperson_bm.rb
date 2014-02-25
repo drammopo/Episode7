@@ -11,7 +11,7 @@ end
 
 Benchmark.bm do |x|
   x.report do
-    puts phil.route
+    phil.route
   end
 end
 
@@ -23,7 +23,7 @@ end
 
 Benchmark.bm do |x|
   x.report do
-    puts bob.route
+    bob.route
   end
 end
 
@@ -35,7 +35,7 @@ end
 
 Benchmark.bm do |x|
   x.report do
-    puts ted.route
+    ted.route
   end
 end
 
@@ -47,6 +47,6 @@ end
 
 Benchmark.bm do |x|
   x.report do
-    puts chuck.route
+    chuck.route
   end
 end

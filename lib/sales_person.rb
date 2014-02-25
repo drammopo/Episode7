@@ -7,6 +7,11 @@ class SalesPerson
 
   def schedule_city(city)
     @cities << city unless @cities.include?(city)
+    @cities.each_with_index do |city, index|
+      if city.starting_point == true
+      @cities.insert(0, cities.delete_at(index))
+      end
+    end
   end
 
   def route

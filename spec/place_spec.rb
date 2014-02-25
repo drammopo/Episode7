@@ -12,6 +12,13 @@ describe Place do
     subject.coordinates.should eq([29,-95])
   end
 
+  it "should have a starting point property" do
+    subject.should respond_to(:starting_point)
+  end
+  it "should not be a starting point by default" do
+    subject.starting_point.should be_false
+  end
+
 
   describe ":build" do
     let(:name) { "El Paso, TX"}
@@ -25,6 +32,12 @@ describe Place do
     it "should be place" do
       Map.stub(:search).with(name).and_return(result)
       Place.build(name).should be_a(Place)
+    end
+
+    it "should be set to the starting point when asked" do
+      Map.stub(:search).with(name).and_return(result)
+      place = Place.build(name, true)
+      place.starting_point.should be_true
     end
   end
 

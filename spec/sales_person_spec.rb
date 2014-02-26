@@ -39,4 +39,14 @@ describe SalesPerson do
     subject.cities.should == [another_city, city]
   end
 
+  it 'should log the total miles' do
+    city = Place.build("Dallas, TX")
+    another_city = Place.build("El Paso, TX", true)
+    subject.schedule_city(city)
+    subject.schedule_city(another_city)
+    subject.schedule_city(Place.build("Austin, TX"))
+    #subject.route_distance.should be_within(0.01).of(570.5181717964364)
+    puts subject.distance_of_route
+  end
+
 end

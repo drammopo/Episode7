@@ -1,8 +1,7 @@
 class CalculatesRoute
 
   def self.calculate(points)
-
-    remaining_points = points
+    remaining_points = points.clone
     route = []
     route << remaining_points.slice!(0)
     until remaining_points == [] do
@@ -25,6 +24,10 @@ class CalculatesRoute
       total_distance += Map.distance_between(route.first,route.last)
     end
     return total_distance
+  end
+
+  def self.time(route,speed)
+    (distance(route) / speed).to_f
   end
 end
 

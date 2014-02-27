@@ -4,6 +4,7 @@ require_relative "../lib/calculates_route"
 require_relative "../lib/place"
 
 describe SalesPerson do
+
   xit "should have many cities" do
     city = stub
     subject.schedule_city(city)
@@ -31,22 +32,30 @@ describe SalesPerson do
     subject.route.should eq(route_stub)
   end
 
-  it 'should be able to choose his/her starting point' do
-    city = Place.build("Dallas, TX")
-    another_city = Place.build("El Paso, TX", true)
-    subject.schedule_city(city)
-    subject.schedule_city(another_city)
-    subject.cities.should == [another_city, city]
-  end
+context "working with live datasets" do
 
-  it 'should log the total miles' do
-    city = Place.build("Dallas, TX")
-    another_city = Place.build("El Paso, TX", true)
-    subject.schedule_city(city)
-    subject.schedule_city(another_city)
-    subject.schedule_city(Place.build("Austin, TX"))
-    #subject.route_distance.should be_within(0.01).of(570.5181717964364)
-    puts subject.distance_of_route
+     let (:city){Place.build("Dallas, TX")}
+     let (:another_city){Place.build("El Paso, TX", true)}
+     let (:yet_another_city){Place.build("El Paso, TX")}
+
+     before :each do
+       subject.schedule_city(city)
+       subject.schedule_city(another_city)
+       subject.schedule_city(yet_another_city)
+       subject.route
+     end
+
+    it 'should be able to choose his/her starting point' do
+      subject.cities.should == [another_city, city, yet_another_city]
+    end
+
+    it 'should log the total miles for the route' do
+      subject.distance_of_route.should be_within(201.1).of(1100) #=> 1141.036
+    end
+
+    it 'should output the total traveling time (assuming 55 mph)' do
+      subject.travel_time.should be_within(1).of(20)
+    end
   end
 
 end

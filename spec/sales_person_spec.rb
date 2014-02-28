@@ -1,7 +1,7 @@
-require 'rspec'
 require_relative "../lib/sales_person"
 require_relative "../lib/calculates_route"
 require_relative "../lib/place"
+require 'rspec'
 
 describe SalesPerson do
 
@@ -12,7 +12,7 @@ describe SalesPerson do
   end
 
   xit "should keep the cities only scheduled once" do
-    city = stub
+    city = double
     expect{
       subject.schedule_city(city)
       subject.schedule_city(city)
@@ -20,14 +20,14 @@ describe SalesPerson do
   end
 
   it "should calculate a route via the CalculatesRoute" do
-    cities = [stub, stub, stub]
+    cities = [double, double, double]
     subject.stub(:cities) { cities }
     CalculatesRoute.should_receive(:calculate).with(cities)
     subject.route
   end
 
   it "should returns the route from CalculatesRoute" do
-    route_stub = [stub, stub]
+    route_stub = [double, double]
     CalculatesRoute.stub(:calculate) { route_stub }
     subject.route.should eq(route_stub)
   end
@@ -50,11 +50,11 @@ context "working with live datasets" do
     end
 
     it 'should log the total miles for the route' do
-      subject.distance_of_route.should be_within(201.1).of(1100) #=> 1141.036
+      subject.total_miles.should be_within(201.1).of(1100)
     end
 
     it 'should output the total traveling time (assuming 55 mph)' do
-      subject.travel_time.should be_within(1).of(20)
+      subject.total_travel_time.should be_within(1).of(20)
     end
   end
 

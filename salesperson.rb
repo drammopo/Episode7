@@ -15,5 +15,5 @@ puts "\nThe new route is:"
 phil.route.each do |city|
   puts city
 end
-puts "There are a total of #{phil.distance_of_route.round(2)} miles on the route."
-puts "The total travel time is #{phil.travel_time.round(2)} hours"
+puts "There are a total of #{phil.total_miles.round(2)} miles on the route."
+puts "The total travel time is #{phil.total_travel_time.round(2)} hours"

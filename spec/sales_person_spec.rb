@@ -5,14 +5,14 @@ require 'rspec'
 
 describe SalesPerson do
 
-  xit "should have many cities" do
-    city = stub
+  it "should have many cities" do
+    city = double(:city, starting_point: false)
     subject.schedule_city(city)
     subject.cities.should include(city)
   end
 
-  xit "should keep the cities only scheduled once" do
-    city = double
+  it "should keep the cities only scheduled once" do
+    city = double(:city, starting_point: false)
     expect{
       subject.schedule_city(city)
       subject.schedule_city(city)

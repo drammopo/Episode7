@@ -14,8 +14,8 @@ end
 
 
 Benchmark.bm do |x|
-  x.report("Benchmarking 2 city route:"){ run_route(2)}
-  x.report("Benchmarking 10 city route:"){ run_route(10)}
-  x.report("Benchmarking 50 city route:"){ run_route(50)}
-  x.report("Benchmarking 200 city route:"){ run_route(100)}
+  x.report("Benchmarking 2 city route:"){ run_route(2) }
+  x.report("Benchmarking 10 city route:"){ run_route(10) }
+  x.report("Benchmarking 50 city route:"){ run_route(50) }
+  x.report("Benchmarking 200 city route:"){ run_route(100) }
 end

@@ -24,7 +24,11 @@ class SalesPerson
   end
 
   def total_travel_time
-    CalculatesRoute.time(routed_cities, MILES_PER_HOUR)
+    t = CalculatesRoute.time(routed_cities, MILES_PER_HOUR) * 60 * 60
+    mm, ss = t.divmod(60)
+    hh, mm = mm.divmod(60)
+    dd, hh = hh.divmod(24)
+    "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
   end
 
 end

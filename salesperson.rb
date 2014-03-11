@@ -8,7 +8,7 @@ phil.schedule_city(Place.build("Austin, TX", true))
 phil.schedule_city(Place.build("Lubbock, TX"))
 
 puts "The original route was:"
-phil.cities.each do |city|
+phil.unrouted_cities.each do |city|
   puts city
 end
 puts "\nThe new route is:"

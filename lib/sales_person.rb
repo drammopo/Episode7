@@ -1,19 +1,20 @@
 class SalesPerson
 
   MILES_PER_HOUR = 55
-  attr_reader :cities, :routed_cities
+  attr_reader :cities, :routed_cities, :unrouted_cities
   def initialize
     @cities = []
+    @unrouted_cities = []
     @routed_cities = []
   end
 
   def schedule_city(city)
+    unrouted_cities << city unless unrouted_cities.include?(city)
     cities << city unless cities.include?(city)
-    cities.each_index do |index|
-      cities.insert(0, cities.delete_at(index)) if cities[index].starting_point == true   
-    end
-    cities
-  end
+    starting_city = city if city.starting_point
+    cities.reject{|c| c.starting_point}
+    cities.unshift(starting_city) unless (cities.include?(starting_city) || starting_city.nil?)
+   end
 
   def route
     @routed_cities = CalculatesRoute.calculate(cities)

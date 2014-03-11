@@ -14,7 +14,7 @@ class SalesPerson
     starting_city = city if city.starting_point
     cities.reject{|c| c.starting_point}
     cities.unshift(starting_city) unless (cities.include?(starting_city) || starting_city.nil?)
-   end
+  end
 
   def route
     @routed_cities = CalculatesRoute.calculate(cities)

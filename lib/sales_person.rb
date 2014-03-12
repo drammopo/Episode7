@@ -9,8 +9,7 @@ class SalesPerson
   end
 
   def schedule_city(city)
-    unrouted_cities << city unless unrouted_cities.include?(city)
-    cities << city unless cities.include?(city)
+    [unrouted_cities, cities].each {|a| a << city} unless cities.include?(city)
     starting_city = city if city.starting_point
     cities.reject{|c| c.starting_point}
     cities.unshift(starting_city) unless (cities.include?(starting_city) || starting_city.nil?)
